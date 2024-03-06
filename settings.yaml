@@ -1,0 +1,73 @@
+mysql:
+  host: 127.0.0.1
+  port: 3306
+  config: "charset=utf8mb4&parseTime=True&loc=Local"
+  db: gvb_db
+  user: root
+  password: root
+  log_level: dev
+logger:
+  level: info
+  prefix: '[gvb]'
+  director: log
+  show_line: true
+  log_in_console: true
+system:
+  host: 0.0.0.0
+  port: 8080
+  env: release
+upload:
+  size: 2
+  path: uploads/file
+jwt:
+  secret: xxx
+  expires: 48
+  issuer: "1234"
+qq:
+  app-id: "xx"
+  key: xx
+  redirect: http://xx.xx.com
+email:
+  host: smtp.qq.com
+  port: 465
+  user: xxx@qq.com
+  password: xxx
+  default-from-email: 易烊丁真
+  use-ssl: xx
+  user-tls: xx
+qiniu:
+  enable: false
+  access-key: HLOJH8d3MX1sTg1rp3IBv9Lm34wZ3m8DyF65_R5i
+  secret-key: gwXfLIAxzW1p8__lcow1kndNwOnWRb8nyq7Fa78H
+  bucket: learnblog
+  cdn: xx://xx.xx.com/
+  zone: z2
+  prefix: "gvb"
+  size: 5
+redis:
+  ip: 127.0.0.1
+  port: 6379
+  password:
+  pool_size: 100
+es:
+  host: "http://127.0.0.1"
+  port: 9200
+  user:
+  password:
+site_info:
+  create_at: "2024-02-07"
+  bei_an: 粤备号
+  title: 个人博客
+  qq_image: https://image.baidu.com/search/albumsdetail?tn=albumsdetail&word=%E6%B8%90%E5%8F%98%E9%A3%8E%E6%A0%BC%E6%8F%92%E7%94%BB&fr=albumslist&album_tab=%E8%AE%BE%E8%AE%A1%E7%B4%A0%E6%9D%90&album_id=409&rn=30
+  version: 1.0.1
+  email: 1191364476@qq.com
+  wechat_image: https://image.baidu.com/search/albumsdetail?tn=albumsdetail&word=%E5%9F%8E%E5%B8%82%E5%BB%BA%E7%AD%91%E6%91%84%E5%BD%B1%E4%B8%93%E9%A2%98&fr=searchindex_album%20&album_tab=%E5%BB%BA%E7%AD%91&album_id=7&rn=30
+  name: 易烊丁真
+  job: 后端开发
+  addr: 广东广州
+  slogan: 唱跳
+  slogan_en: singdance
+  web: http://www.baidu.com
+  bilibili_url: http://www.bilibili.com
+  gitee_url: http://www.gitee.com
+  github_url: http://www.github.com

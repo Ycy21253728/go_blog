@@ -1,0 +1,12 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "gvb_server API文档",
+        "title": "gvb_server API文档",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "127.0.0.01:8080",
+    "basePath": "/",
+    "paths": {}
+}
