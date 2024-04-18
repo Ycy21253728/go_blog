@@ -17,6 +17,15 @@ type CollResponse struct {
 	CreatedAt string `json:"created_at"`
 }
 
+// ArticleCollListView 用户收藏的文章列表
+// @Tags 文章管理
+// @Summary 用户收藏的文章列表
+// @Description 用户收藏的文章列表
+// @Router /api/articles/collects [get]
+// @Param token header string  true  "token"
+// @Param data query models.PageInfo  true  "查询参数"
+// @Produce json
+// @Success 200 {object} res.Response{data=res.ListResponse[CollResponse]}
 func (ArticleApi) ArticleCollListView(c *gin.Context) {
 
 	var cr models.PageInfo
@@ -63,6 +72,7 @@ func (ArticleApi) ArticleCollListView(c *gin.Context) {
 			continue
 		}
 		article.ID = hit.Id
+		article.Content = ""
 		collList = append(collList, CollResponse{
 			ArticleModel: article,
 			CreatedAt:    collMap[hit.Id],

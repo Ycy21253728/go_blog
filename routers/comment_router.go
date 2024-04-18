@@ -8,7 +8,8 @@ import (
 func (router RouterGroup) CommentRouter() {
 	app := api.ApiGroupApp.CommentApi
 	router.POST("comments", middleware.JwtAuth(), app.CommentCreateView)
-	router.GET("comments", app.CommentListView)
+	//router.GET("comments", app.CommentListView)
+	router.GET("comments", app.CommentListAllView)
 	router.GET("comments/:id", app.CommentDigg)
 	router.DELETE("comments/:id", app.CommentRemoveView)
 }

@@ -23,13 +23,21 @@ type Message struct {
 
 type MessageGroup map[uint]*Message
 
+// MessageListView 用户与其他人的消息列表
+// @Tags 消息管理
+// @Summary 用户与其他人的消息列表
+// @Description 用户与其他人的消息列表
+// @Router /api/messages [get]
+// @Param token header string true "token"
+// @Produce json
+// @Success 200 {object} res.Response{data=[]Message}
 func (MessageApi) MessageListView(c *gin.Context) {
 	_claims, _ := c.Get("claims")
 	claims := _claims.(*jwts.CustomClaims)
 
 	var messageGroup = MessageGroup{}
 	var messageList []models.MessageModel
-	var messages []Message
+	var messages = make([]Message, 0)
 
 	global.DB.Order("created_at asc").
 		Find(&messageList, "send_user_id = ? or rev_user_id = ?", claims.UserID, claims.UserID)

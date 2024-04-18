@@ -6,12 +6,28 @@ import (
 	"gvb_server/models/res"
 	"gvb_server/service"
 	"gvb_server/service/image_ser"
+	"gvb_server/utils/jwts"
 	"io/fs"
 	"os"
 )
 
-// ImageUploadView 上传单个图片，返回图片的url
+// ImageUploadView 上传多个图片，返回图片的url
+// @Tags 图片管理
+// @Summary 上传多个图片，返回图片的url
+// @Description 上传多个图片，返回图片的url
+// @Router /api/images [post]
+// @Param token header string true "token"
+// @Accept multipart/form-data
+// @Param images formData file true "文件上传"
+// @Produce json
+// @Success 200 {object} res.Response{}
 func (ImagesApi) ImageUploadView(c *gin.Context) {
+	_claims, _ := c.Get("claims")
+	claims := _claims.(*jwts.CustomClaims)
+	if claims.Role == 3 {
+		res.FailWithMessage("游客用户不可上传图片", c)
+		return
+	}
 	// 上传多个图片
 	form, err := c.MultipartForm()
 	if err != nil {

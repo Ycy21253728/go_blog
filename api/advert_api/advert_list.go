@@ -23,7 +23,7 @@ func (AdvertApi) AdvertListView(c *gin.Context) {
 		return
 	}
 	// 判断 Referer 是否包含admin，如果是，就全部返回，不是，就返回is_show=true
-	referer := c.GetHeader("Referer")
+	referer := c.GetHeader("Gvb_referer")
 	isShow := true
 	if strings.Contains(referer, "admin") {
 		// admin来的

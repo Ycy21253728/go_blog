@@ -15,6 +15,11 @@ type UserResponse struct {
 	RoleID int `json:"role_id"`
 }
 
+type UserListRequest struct {
+	models.PageInfo
+	Role int `json:"role" form:"role"`
+}
+
 // UserListView 用户列表
 // @Tags 用户管理
 // @Summary 用户列表
@@ -27,14 +32,15 @@ func (UserApi) UserListView(c *gin.Context) {
 	// 如何判断是管理员
 	_claims, _ := c.Get("claims")
 	claims := _claims.(*jwts.CustomClaims)
-	var page models.PageInfo
+	var page UserListRequest
 	if err := c.ShouldBindQuery(&page); err != nil {
 		res.FailWithCode(res.ArgumentError, c)
 		return
 	}
 	var users []UserResponse
-	list, count, _ := common.ComList(models.UserModel{}, common.Option{
-		PageInfo: page,
+	list, count, _ := common.ComList(models.UserModel{Role: ctype.Role(page.Role)}, common.Option{
+		PageInfo: page.PageInfo,
+		Likes:    []string{"nick_name"},
 	})
 	for _, user := range list {
 		if ctype.Role(claims.Role) != ctype.PermissionAdmin {

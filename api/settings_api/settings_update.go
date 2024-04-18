@@ -17,15 +17,6 @@ func (SettingsApi) SettingsInfoUpdateView(c *gin.Context) {
 		return
 	}
 	switch cr.Name {
-	case "site":
-		var info config.SiteInfo
-		err = c.ShouldBindJSON(&info)
-		if err != nil {
-			res.FailWithCode(res.ArgumentError, c)
-			return
-		}
-		global.Config.SiteInfo = info
-
 	case "email":
 		var info config.Email
 		err = c.ShouldBindJSON(&info)

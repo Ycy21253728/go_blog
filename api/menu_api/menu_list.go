@@ -43,6 +43,6 @@ func (MenuApi) MenuListView(c *gin.Context) {
 			Banners:   banners,
 		})
 	}
-	res.OkWithData(menus, c)
+	res.OkWithList(menus, int64(len(menus)), c)
 	return
 }

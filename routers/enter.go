@@ -15,9 +15,9 @@ type RouterGroup struct {
 func InitRouter() *gin.Engine {
 	gin.SetMode(global.Config.System.Env)
 	router := gin.Default()
-	router.GET("/swagger/*any", gs.WrapHandler(swaggerFiles.Handler))
 
 	router.StaticFS("uploads", http.Dir("uploads"))
+	router.GET("/swagger/*any", gs.WrapHandler(swaggerFiles.Handler))
 
 	// 路由分组
 	apiRouterGroup := router.Group("api")
@@ -33,7 +33,6 @@ func InitRouter() *gin.Engine {
 	routerGroupApp.TagRouter()
 	routerGroupApp.MessageRouter()
 	routerGroupApp.ArticleRouter()
-	routerGroupApp.DiggRouter()
 	routerGroupApp.CommentRouter()
 	routerGroupApp.NewsRouter()
 	routerGroupApp.ChatRouter()
